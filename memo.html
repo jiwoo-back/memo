@@ -8,17 +8,60 @@
   <style>
   /*@charset "UTF-8";*/
 
-  html,
-  body {
-  height: 100%;
-  margin: 0;
-  background: #48befe;
+  *{
+    box-sizing: border-box;
   }
 
-  a {
-  text-decoration: none;
-  cursor: pointer;
+
+    html,
+    body {
+    margin: 0 auto;
+    padding: 0;
+    min-height: 100vh;
+    height: 100%;
+    background: #48befe;
+    }
+
+  h1, h2, h3, h4, ul, p, iframe, section, button, input, div, li, ul, ol, dd, dl{
+    margin: 0;
+    padding: 0;
+    border: 0;}
+
+
+  li{
+    list-style: none;
   }
+
+
+  a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    }
+
+
+  button{
+    outline: none;
+    background: none;
+  }
+
+
+  dd{
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  textarea{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+
+
+
 
 .blind{
   font-size: 0;
@@ -432,7 +475,7 @@ resize: none;
         </div>
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <img id="drag1" src="comp1.png" draggable="true" ondragstart="drag(event)" class="drag-img">
-      
+
 
           <div class="form--field">
           <label class="blind">내용</label>
