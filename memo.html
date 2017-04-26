@@ -82,7 +82,7 @@ transition: all 0.3s ease;
 background-color: #ffbc36;
 height: 144px;
 width: 144px;
-border-radius:50%;
+border-radius:45%;
 box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
 cursor: pointer;
 padding: 10px;
@@ -105,7 +105,7 @@ background-color: #FAFAFA;
 padding: 18px 32px;
 border-radius: 5px;
 width: 420px;
-height: 638px;
+height: 640px;
 cursor: default;
 }
 .add-story.open form {
@@ -173,10 +173,6 @@ form * {
 outline: none;
 }
 
-.weather{
-  background: #403;
-  display: inline-block;
-}
 
 label {
 display: block;
@@ -276,7 +272,8 @@ content: "☃️";
 }
 
 .form--field {
-width: 420px;
+/*width: 420px;*/
+/*background-color: rgb(226, 99, 200)*/
 /*margin-top: 10px;*/
 }
 .form--field.-short {
@@ -319,44 +316,68 @@ resize: none;
 }
 
 .form--element-wheater{
-  margin: 15px 0 3px 1px;
+  /*margin-top: 5px;*/
 }
 
-/**/
+/*-------------------------*/
 .list-ul{
+  width: 80px;
   position: absolute;
-  left: -103px;
+  /*background-color: rgb(94, 69, 235);*/
+  left: -75px;
   top: 17px;
   border-radius: 3px 0 0 3px;
   font-size: 18px;
   list-style-type: none;
   text-align: right;
+  z-index: 99;
+
 }
 
 .list-li{
+  text-align: center;
   padding: 10px 8px;
   margin: 5px;
   background: gold;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid black;
+
+
 }
+
+/*---------------------------------------*/
 
 .list-content-all{
   background: #acd;
   position: absolute;
-  top: -20px;
-  left:0px;
-  width: 384px;
-  height: 570px;
-  padding: 50px;
+  top: 0;
+  left:0;
+  width: 420px;
+  height: 640px;
+  padding: 30px;
   z-index: 80;
-  border-radius: 5px
-
+  border-radius: 5px;
 }
-
 .list-content{
-  /*background: #832;*/
   font-size: 18px;
-  margin-bottom: 6px;
+  margin: 10px 0;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  /*margin-bottom: 6px;*/
 }
+/**/
+.list-content>strong{
+  /*background-color: rgb(8, 81, 85);*/
+  width: 65%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+}
+/*------------------------------------------*/
 .view-list-wrap{
   background: #a83;
   position: absolute;
@@ -379,12 +400,16 @@ resize: none;
   /*background: #392;*/
   width: 45%;
   float: right;
-  margin: 10px 0;
-  font-size: 14px
+  display: flex;
+  justify-content: flex-end;
+  /*margin: 10px 0;*/
+  font-size: 14px;
 }
 
 .weather{
-  padding: 5px 4px;
+  /*padding: 5px 4px;*/
+  /*background: #403;*/
+  display: inline-block;
 }
 
 .file-upload{
@@ -422,7 +447,13 @@ resize: none;
 
         <div class="list-wrap" :class="{'open':listOpen}"  >
           <ul class="list-content-all" @click="listOpen = true"  v-show="!ulhide">
-            <li class="list-content"  @click="viewOpen">dfdfdfdfd
+            <li class="list-content"  @click="viewOpen">
+              <strong>제목제목제목제목제목제목제목제목</strong>
+              <date>2017-04-28</date>
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong>제목</strong>
+              <date>2017-04-28</date>
             </li>
           </ul>
         </div>
@@ -438,7 +469,7 @@ resize: none;
         </div>
 
         <div class="form--field date-wrapper">
-          <label class="blind date">날씨</label>
+          <!-- <label class="blind date">날씨</label> -->
           <input class="form--element form--element-wheater" type="datetime-local" v-model="productData.date" />
         </div>
         <div class="weather-wrap">
@@ -473,6 +504,7 @@ resize: none;
           <label class="blind">제목</label>
           <input type="text" class="form--element form--element-Title" name="title" v-model="productData.title" placeholder="Title" required="">
         </div>
+
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         <img id="drag1" src="comp1.png" draggable="true" ondragstart="drag(event)" class="drag-img">
 
@@ -509,7 +541,7 @@ var data = {
 var vue = new Vue({
   el: '#app',
   data: {
-    formOpen: false,
+    formOpen: true,
     listOpen: false,
     ulhide: true,
     write: false,
