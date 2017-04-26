@@ -183,67 +183,101 @@ outline: none;
 
 
 label {
-/*display: block;*/
-font-size: 4px;
+display: block;
+font-size: 14px;
 font-weight: bold;
 user-select: none;
-padding-left: 5px;
-/*padding: 10px;*/
 }
 label.sunny input {
-/*appearance: none;*/
+appearance: none;
 /*height: 21px;*/
-
+margin: 0;
 display: none;
 }
 label.sunny input + span:after {
 content: "☀️";
 font-size: 18px;
+top: 2px;
+left: 2px;
+position: relative;
+height: 18px;
+display: inline-block;
 }
 label.sunny input:checked + span:after {
 content: "🌤";
 }
-label.sunnyandcloudy input {
+/*label.sunnyandcloudy input {
+appearance: none;
+height: 21px;
+margin: 0;
 display: none;
 }
 label.sunnyandcloudy input + span:after {
-content: "🌤";
+content: "⛅️";
 font-size: 18px;
+top: 2px;
+left: 2px;
+position: relative;
+height: 18px;
+display: inline-block;
 }
 label.sunnyandcloudy input:checked + span:after {
-content: "⛅️";
+content: "🌦";
 }
 label.cloudy input {
+appearance: none;
+height: 21px;
+margin: 0;
 display: none;
 }
 label.cloudy input + span:after {
-content: "🌩";
+content: "☁️";
 font-size: 18px;
-
+top: 2px;
+left: 2px;
+position: relative;
+height: 18px;
+display: inline-block;
 }
 label.cloudy input:checked + span:after {
-content: "⛈";
+content: "🌩";
 }
 label.rainy input {
+appearance: none;
+height: 21px;
+margin: 0;
 display: none;
 }
 label.rainy input + span:after {
-content: "☂️";
+content: "💧";
 font-size: 18px;
+top: 2px;
+left: 2px;
+position: relative;
+height: 18px;
+display: inline-block;
 }
 label.rainy input:checked + span:after {
-content: "☔️";
+content: "💦";
 }
 label.snow input {
+appearance: none;
+height: 21px;
+margin: 0;
 display: none;
 }
 label.snow input + span:after {
 content: "⛄️";
 font-size: 18px;
+top: 2px;
+left: 2px;
+position: relative;
+height: 18px;
+display: inline-block;
 }
 label.snow input:checked + span:after {
 content: "☃️";
-}
+}*/
 
 .form--field {
 /*width: 420px;*/
@@ -380,12 +414,12 @@ resize: none;
 
 .weather-wrap{
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 16px;
   width: 45%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /*background-color: rgb(120, 133, 43);*/
+  background-color: rgb(120, 133, 43);
   float: right;
 }
 
@@ -632,7 +666,7 @@ resize: none;
           <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
-        <label class="weather sunnyandcloudy">
+        <!-- <label class="weather sunnyandcloudy">
           <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
@@ -647,7 +681,7 @@ resize: none;
         <label class="weather snow">
           <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
-        </label>
+        </label> -->
 
         </div>
 
