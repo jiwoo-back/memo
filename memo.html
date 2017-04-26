@@ -583,18 +583,19 @@ resize: none;
 
   <div class="container" id="app">
     <div class="add-story" :class="{'open': formOpen}">
-      <div class="button-copy" v-show="!formOpen" @click="formOpen = true">나의 노른자</div>
+      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">나의 노른자</div>
+
       <form @submit="cancel">
 
         <nav class="list">
           <ul class="list-ul">
             <li class="list-li" @click="showWrite"><a>write</a></li>
-            <li class="list-li" @click="showUlhide"><a>list</a></li>
+            <li class="list-li" @click="showlist"><a>list</a></li>
           </ul>
         </nav>
 
-        <div class="list-wrap" :class="{'open':listOpen}"  >
-          <ul class="list-content-all" @click="listOpen = true"  v-show="!ulhide">
+
+          <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
             <li class="list-content"  @click="viewOpen">
               <strong>제목제목제목제목제목제목제목제목</strong>
               <date>2017-04-28</date>
@@ -604,9 +605,9 @@ resize: none;
               <date>2017-04-28</date>
             </li>
           </ul>
-        </div>
 
-        <div class="view-list" :class="{'open':viewOpen}"  v-show="!viewlisthide" >
+
+        <div class="view-list" :class="{'open':viewOpen}"  v-show="viewitem" >
           <div class="view-list-wrap">
             <h3 class="blind">제목</h3>
            <div class="days">
@@ -631,7 +632,7 @@ resize: none;
           </div>
         </div>
 
-
+      <div class="view-add" v-show="viewwrite" >
         <div class="form--field date-wrapper">
           <!-- <label class="blind date">날씨</label> -->
           <input class="form--element form--element-wheater" type="date" v-model="productData.date" />
@@ -688,10 +689,11 @@ resize: none;
 
         <!-- <input class="file-upload" type="file" multiple /> -->
         <button type="submit" class="submit-button">save</button>
+    </div>
 
       </form>
     </div>
-    <div class="cancel"><span @click="cancel">X</span></div>
+    <div v-show="formOpen" class="cancel" @click="cancel"><span >X</span></div>
 
 
 
@@ -715,37 +717,44 @@ var vue = new Vue({
   data: {
     image:'',
     formOpen: true,
+    viewitem: false,
+    viewwrite: true,
     listOpen: true,
-    ulhide: true,
-    write: false,
-    // viewOpen: false,
-    viewlisthide: true,
+    viewlists: false,
+    // write: false,
     productData: {
       date: '',
       title: '',
-      weather: false
+      weather: '',
     }
   },
   methods: {
     cancel: function() {
       this.formOpen = false;
+      this.viewitem = false;
+      this.viewlists = false;
+      this.viewwrite = false;
+
     },
-    showUlhide(){
-      this.ulhide = false;
+    showlist(){
+      this.viewitem = false;
+      this.viewlists = true;
+      this.viewwrite = false;
+
 
     },
     showWrite(){
-      this.ulhide = true;
-      this.viewlisthide = true;
+      this.viewitem = false;
+      this.viewlists = false;
+      this.viewwrite = true;
+
     },
     viewOpen: function() {
-      this.viewlisthide = false;
-      this.ulhide = true;
+      this.viewitem = true;
+      this.viewlists = false;
       console.log("llllll")
     },
-    viewHide(){
-      this.viewlisthide = true;
-    },
+
     onFileChange(e){
       var files = e.target.files || e.dataTransfer.files;
       if(!files.length)
