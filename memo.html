@@ -154,6 +154,9 @@ border: none;
 font-weight: 700;
 padding: 0 34px;
 margin: 0 auto;
+position: absolute;
+bottom: 20px;
+left: 156px;
 }
 .submit-button img {
 position: relative;
@@ -297,7 +300,7 @@ padding: 0 4px;
 color: #3D3D3D;
 width: 100%;
 margin: 4px 0;
-height: 400px
+/*height: 400px;*/
 box-sizing: border-box;
 }
 
@@ -418,7 +421,7 @@ resize: none;
 }
 
 .drag-img{
-  width: 30%;
+  width: 20%;
   height: 150px;
 }
 /*.view-list{
@@ -508,6 +511,34 @@ resize: none;
     padding: 0;
  }
 
+.upload-image{
+ width: 100px;
+ margin: auto;
+ display: block;
+ margin-bottom: 10px;
+ background: #309;
+}
+
+.rmv-btn{
+  background: gray;
+  margin: 0 auto;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  position: absolute;
+  bottom: 184px;
+  font-size: 6px
+
+}
+.rmv-btn:hover{
+  background: black;
+}
+
+.upload-wrapper{
+  background: #39c;
+  width: 100%;
+}
+
 /*==============================================*/
 
 
@@ -582,7 +613,7 @@ resize: none;
 
         <div class="form--field date-wrapper">
           <!-- <label class="blind date">날씨</label> -->
-          <input class="form--element form--element-wheater" type="datetime-local" v-model="productData.date" />
+          <input class="form--element form--element-wheater" type="date" v-model="productData.date" />
         </div>
         <div class="weather-wrap">
           날씨:
@@ -617,8 +648,6 @@ resize: none;
           <input type="text" class="form--element form--element-Title" name="title" v-model="productData.title" placeholder="Title" required="">
         </div>
 
-        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <img id="drag1" src="comp1.png" draggable="true" ondragstart="drag(event)" class="drag-img">
 
 
           <div class="form--field">
@@ -626,6 +655,15 @@ resize: none;
           <textarea class="form--element textarea" v-model="productData.description" placeholder="Description">
           </textarea>
         </div>
+
+        <div v-if="!image">
+          <input type="file" @change="onFileChange">
+        </div>
+        <div class="upload-wrapper" v-else>
+          <img class="upload-image" :src="image" />
+            <button class="rmv-btn" @click="removeImage">파일 삭제</button>
+        </div>
+
         <!-- <input class="file-upload" type="file" multiple /> -->
         <button type="submit" class="submit-button">save</button>
         <div class="cancel"><span @click="cancel">X</span></div>
@@ -644,7 +682,7 @@ resize: none;
 <!-- script -->
 <script data-type="data">
 var data = {
-  // message: 'Hello Vue World'
+
 };
 </script>
 
@@ -653,6 +691,7 @@ var data = {
 var vue = new Vue({
   el: '#app',
   data: {
+    image:'',
     formOpen: true,
     listOpen: false,
     ulhide: true,
@@ -676,8 +715,6 @@ var vue = new Vue({
     showWrite(){
       this.ulhide = true;
       this.viewlisthide = true;
-
-
     },
     viewOpen: function() {
       this.viewlisthide = false;
@@ -686,8 +723,26 @@ var vue = new Vue({
     },
     viewHide(){
       this.viewlisthide = true;
-
     },
+    onFileChange(e){
+      var files = e.target.files || e.dataTransfer.files;
+      if(!files.length)
+       return;
+       this.createImage(files[0]);
+    },
+    createImage(file){
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+
+    }
   }
 })
 
@@ -695,5 +750,7 @@ var vue = new Vue({
 
 
 </script>
+
+
 </body>
 </html>
