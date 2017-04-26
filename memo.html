@@ -108,7 +108,7 @@ cursor: default;
 opacity: 1;
 transition: opacity 0.1s ease;
 transition-delay: 0.3s;
-height: auto;
+/*height: auto;*/
 }
 .add-story .button-copy {
 text-align: center;
@@ -119,25 +119,34 @@ color: #f7f7f7;
 .add-story form {
 transition: none;
 opacity: 0;
-height: 0;
-overflow: hidden;
+/*height: 0;*/
+/*overflow: hidden;*/
 }
 .add-story .cancel {
-font-size: 12px;
+/*font-size: 12px;*/
 text-align: center;
-margin-top: 1em;
-margin-top: 50px;
-background: gray;
+/*margin-top: 1em;*/
+/*margin-top: 50px;*/
+background: rgb(187, 255, 225);
 width: 50px;
 height: 50px;
-border-right: 50%;
-/*position: absolute;*/
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+padding-top: 3px;
+position: relative;
+top: 10px;
+left: 50%;
+transform: translate(-50%);
 }
 .add-story .cancel span {
 cursor: pointer;
+font-size: 2rem
 }
 .add-story .cancel span:hover {
 text-decoration: underline;
+
 }
 
 .submit-button {
@@ -181,18 +190,18 @@ user-select: none;
 }
 label.sunny input {
 appearance: none;
-height: 21px;
+/*height: 21px;*/
 margin: 0;
 display: none;
 }
 label.sunny input + span:after {
 content: "☀️";
-font-size: 18px;
-top: 2px;
-left: 2px;
-position: relative;
-height: 18px;
-display: inline-block;
+/*font-size: 18px;*/
+/*top: 2px;*/
+/*left: 2px;*/
+/*position: relative;*/
+/*height: 18px;*/
+/*display: inline-block;*/
 }
 label.sunny input:checked + span:after {
 content: "🌤";
@@ -314,9 +323,7 @@ height: 350px;
 resize: none;
 }
 
-.form--element-wheater{
-  /*margin-top: 5px;*/
-}
+
 
 /*-------------------------*/
 .list-ul{
@@ -347,7 +354,7 @@ resize: none;
 /*---------------------------------------*/
 
 .list-content-all{
-  background: #acd;
+  background: #fff;
   position: absolute;
   top: 0;
   left:0;
@@ -390,26 +397,33 @@ resize: none;
   font-size: 12px;
 }
 
+.date_wheater{
+  background-color: rgb(251, 1, 17)
+
+}
+.date_wheater::after{
+  content: "";
+  display: block;
+  clear: both;
+
+}
 .date-wrapper{
   width: 50%;
-  display: inline-block;
   float: left;
 }
 
 .weather-wrap{
-  /*background: #392;*/
+  margin-top: 2px;
+  font-size: 16px;
   width: 45%;
-  float: right;
   display: flex;
   justify-content: flex-end;
-  /*margin: 10px 0;*/
-  font-size: 14px;
+  align-items: center;
+  background-color: rgb(120, 133, 43);
+  float: right;
 }
 
 .weather{
-  /*padding: 5px 4px;*/
-  /*background: #403;*/
-  display: inline-block;
 }
 
 .file-upload{
@@ -468,20 +482,29 @@ resize: none;
    float: right;
    padding: 0 10px
  }
- .days-weather::after{
+ /*.days-weather::after{
    content: "";
    clear: both;
    display: block;
-  }
+  }*/
 
  .days-img{
    width: 100%;
    height: 200px;
+   overflow: hidden;
    /*margin-top: 100px;*/
    /*background: #87c;*/
-   margin-top: 12px;
+   margin-top: 30px;
    float: right;
 
+ }
+
+ .days-img img{
+   /*width: 100%;*/
+   height: 100%;
+   position: relative;
+   left: 50%;
+   transform: translate(-50%);
  }
  .days-img::after{
    content: "";
@@ -490,26 +513,61 @@ resize: none;
  }
  .days-letter{
    /*background: #63c;*/
+   margin-top: 20px;
    float: right;
    width: 100%;
  }
 
+ /*.days-letter::after{
+   content: "";
+   display: block;
+   height: 100px;
+   background-color: rgb(20, 162, 40)
+ }*/
+
  .days-title{
    /*background: #03d;*/
 /* float: right; */
-   margin: 10px 0;
+   margin-bottom: 10px;
    display: block;
-   border-bottom: 1px solid gray;
+   text-align: center;
+   /*border-bottom: 1px solid gray;*/
+
  }
 
- hr{
+ .days-span{
+   /*background-color: rgb(251, 94, 78);*/
+   position: relative;
+   line-height: 20px;
+   text-align: justify
+ }
+
+ .days-span::after{
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: block;
+   /*background: rgb(22, 244, 238);*/
+   background: linear-gradient(to bottom, transparent 19px, black 19px);
+   background-size: 1px 20px;
+   /*z-index: 99999*/
+
+   content: "";
+   height: 100%;
+   width: 100%;
+   /*opacity: 0.3;*/
+ }
+
+
+
+ /*hr{
    display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
- }
+ }*/
 
 .upload-image{
  width: 100px;
@@ -585,24 +643,10 @@ resize: none;
             <div class="days-weather">날씨
               <strong>흐림</strong>
             </div>
-            <div class="days-img"><img src="#" alt=""></div>
+            <div class="days-img"><img src="./cat.jpg" alt=""></div>
             <div class="days-letter">
               <h3 class="days-title">제목</h3>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-              <hr>
-
+              <p class="days-span">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
 
 
@@ -610,6 +654,7 @@ resize: none;
 
           </div>
         </div>
+
 
         <div class="form--field date-wrapper">
           <!-- <label class="blind date">날씨</label> -->
@@ -637,6 +682,7 @@ resize: none;
           <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
+
         </div>
 
         <!-- <div class="form--field">
@@ -666,9 +712,9 @@ resize: none;
 
         <!-- <input class="file-upload" type="file" multiple /> -->
         <button type="submit" class="submit-button">save</button>
-        <div class="cancel"><span @click="cancel">X</span></div>
 
       </form>
+      <div class="cancel"><span @click="cancel">X</span></div>
     </div>
 
 
@@ -693,7 +739,7 @@ var vue = new Vue({
   data: {
     image:'',
     formOpen: true,
-    listOpen: false,
+    listOpen: true,
     ulhide: true,
     write: false,
     // viewOpen: false,
