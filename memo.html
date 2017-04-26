@@ -82,7 +82,7 @@ border-radius: 45%;
 box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
 cursor: pointer;
 padding: 10px;
-/*font-size: 26px;*/
+font-size: 26px;
 position: absolute;
 }
 
@@ -134,7 +134,7 @@ justify-content: center;
 border-radius: 50%;
 padding-top: 3px;
 position: relative;
-top: -320px;
+top: -43vh;
 right: -209px;
 cursor: pointer;
 z-index: 100;
@@ -293,8 +293,9 @@ border-radius: 2px;
 }
 
 .form--element.textarea {
-height: 350px;
+height: 250px;
 resize: none;
+padding: 5px;
 }
 
 
@@ -323,7 +324,7 @@ resize: none;
   cursor: pointer;
 }
 .list-li:hover{
-  background-color: rgb(173, 255, 139)
+  background-color: #fac459;
 }
 
 /*---------------------------------------*/
@@ -335,24 +336,60 @@ resize: none;
   left:0;
   width: 420px;
   height: 86vh;
-  padding: 30px;
+  overflow: scroll;
+  /*padding: 30px;*/
   z-index: 80;
   border-radius: 5px;
 }
 .list-content{
-  font-size: 18px;
-  margin: 10px 0;
-  padding: 5px 10px;
+  /*padding: 30px;*/
   border: 1px solid black;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
   cursor: pointer;
+  /*background: #62d;*/
+  position: relative;
+  height: 34.333333vh;
   /*margin-bottom: 6px;*/
 }
+
+.list-content-titie{
+  font-size: 18px;
+  /*background: #342;*/
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  /*margin-bottom: 30px;*/
+  /*padding-right: 200px;*/
+  /*width: 180px;*/
+}
+
+.list-content-date{
+  /*background: #109;*/
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 15px
+}
+.list-content-li{
+  overflow: hidden;
+}
+
 .list-content:hover{
-  background-color: rgb(156, 255, 233);
-  transition: all 0.5s
+  background-color: rgba(1,1,1 0.5);
+  transition: all 0.5s;
+}
+
+.list-img{
+  background: #392;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  height: 100%
+  /*padding: 10px*/
+  /*transform: translate(-50%, -50%);*/
+}
+.list-img::before:hover{
+  content: '';
+
 }
 
 /**/
@@ -409,7 +446,7 @@ resize: none;
 
 .file-upload-wrap{
   background: #fff;
-  height: 110px;
+  height: 208px;
   border: 1px solid #ECECEC;
   border-radius: 3px;
 }
@@ -425,7 +462,7 @@ resize: none;
 .upload-wrapper{
   /*background: #39c;*/
   width: 100%;
-  height: 110px;
+  height: 208px;
   overflow: scroll;
   border: 1px solid #ECECEC;
   border-radius: 3px;
@@ -435,11 +472,11 @@ resize: none;
 
 .drag-img{
   width: 20%;
-  height: 110px;
+  height: 208px;
 }
 .upload-btn{
   position: absolute;
-  bottom: 118px;
+  bottom: 168px;
   left: 135px;
 
 }
@@ -473,7 +510,7 @@ resize: none;
  .days-list{
    float: left;
    /*background: #30d;*/
-   padding: 0 5px;
+   padding: 0 2px;
  }
 
  .days-list::after{
@@ -495,11 +532,11 @@ resize: none;
 
  .days-img{
    width: 100%;
-   height: 200px;
-   overflow: hidden;
+   height: 29vh;
+   /*overflow: hidden;*/
    /*margin-top: 100px;*/
    /*background: #87c;*/
-   margin-top: 30px;
+   margin-top: 20px;
    float: right;
 
  }
@@ -535,7 +572,9 @@ resize: none;
 /* float: right; */
    margin-bottom: 10px;
    display: block;
-   text-align: center;
+   /*text-align: center;*/
+   font-size: 22px;
+
    /*border-bottom: 1px solid gray;*/
 
  }
@@ -577,10 +616,9 @@ resize: none;
   padding: 2px 8px;
   border-radius: 4px;
   color: #fff;
-  position: absolute;
-  bottom: 39px;
-  left: 153px;
-  font-size: 6px;
+  position: fixed;
+  bottom: 221px;
+  left: 231px;
   /*transform: translate(-50%);*/
 
 
@@ -601,7 +639,8 @@ resize: none;
 
   <div class="container" id="app">
     <div class="add-story" :class="{'open': formOpen}">
-      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">나의 노른자</div>
+      <!-- <div class="egg">gmlsek</div> -->
+      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">일기쓰기</div>
 
       <form @submit="cancel">
 
@@ -615,12 +654,24 @@ resize: none;
 
           <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
             <li class="list-content"  @click="viewOpen">
-              <strong>제목제목제목제목제목제목제목제목</strong>
-              <date>2017-04-28</date>
+              <strong class="list-content-titie">제목제목제목제목제목제목제목제목</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="cat.jpg">
             </li>
             <li class="list-content"  @click="viewOpen">
-              <strong>제목</strong>
-              <date>2017-04-28</date>
+              <strong class="list-content-titie">제목</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="cat.jpg">
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">제목</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="cat.jpg">
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">제목</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="cat.jpg">
             </li>
           </ul>
 
@@ -638,7 +689,7 @@ resize: none;
             <div class="days-weather">날씨
               <strong>흐림</strong>
             </div>
-            <div class="days-img"><img src="./cat.jpg" alt=""></div>
+            <div class="days-img-wrap"><img src="./cat.jpg" alt="" class="days-img"></div>
             <div class="days-letter">
               <h3 class="days-title">제목</h3>
               <p class="days-span">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
