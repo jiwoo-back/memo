@@ -76,33 +76,34 @@ position: relative;
 .add-story {
 transition: all 0.3s ease;
 background-color: #ffbc36;
-height: 144px;
-width: 144px;
+height: 180px;
+width: 180px;
 border-radius: 45%;
 box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
 cursor: pointer;
-padding: 10px;
+/*padding: 10px;*/
 font-size: 26px;
 position: absolute;
-z-index: 80
+border: 30px solid #fff;
+
 }
 
 .add-story:hover {
 transition: all 0.3s ease;
 background-color: #ffb520;
-height: 150px;
-width: 150px;
+height: 185px;
+width: 185px;
 border-radius: 50%;
 box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
 cursor: pointer;
 }
 
 .add-story.open {
-background-color: #FAFAFA;
-padding: 18px 32px;
+background-color: #fff;
+/*padding: 30px;*/
 border-radius: 5px;
-width: 450px;
-height: 86vh;
+width: 420px;
+height: 612px;
 cursor: default;
 }
 .add-story.open form {
@@ -116,6 +117,9 @@ text-align: center;
 line-height: 144px;
 font-weight: bold;
 color: #f7f7f7;
+position: absolute;
+top: -7px;
+left: 15px;
 }
 
 .add-story form {
@@ -135,8 +139,8 @@ justify-content: center;
 border-radius: 50%;
 padding-top: 3px;
 position: relative;
-top: -43vh;
-right: -225px;
+top: -41vh;
+right: -209px;
 cursor: pointer;
 z-index: 100;
 filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.1));
@@ -158,6 +162,10 @@ text-decoration: underline;
 
 }
 
+.submit-button-wrap{
+  padding: 17px;
+}
+
 .submit-button {
 display: block;
 background-color: #3498DB;
@@ -171,9 +179,9 @@ font-size: 15px;
 font-weight: 700;
 padding: 0 34px;
 margin: 0 auto;
-position: absolute;
+/*position: absolute;
 bottom: 3vh;
-left: 156px;
+left: 156px;*/
 }
 .submit-button img {
 position: absolute;
@@ -284,7 +292,7 @@ font-size: 14px;
 padding: 3px 4px;
 color: #3D3D3D;
 width: 100%;
-height: 5vh;
+height: 30px;
 margin: 5px 0;
 }
 
@@ -294,7 +302,7 @@ border-radius: 2px;
 }
 
 .form--element.textarea {
-height: 31vh;
+height: 200px;
 resize: none;
 padding: 5px;
 }
@@ -306,7 +314,7 @@ padding: 5px;
   width: 80px;
   position: absolute;
   /*background-color: rgb(94, 69, 235);*/
-  left: -75px;
+  left: -105px;
   top: 17px;
   border-radius: 3px 0 0 3px;
   font-size: 18px;
@@ -320,36 +328,35 @@ padding: 5px;
   text-align: center;
   padding: 10px 8px;
   margin: 5px;
-  background: #ffe536;
+  background: gold;
   border-radius: 10px 0 0 10px;
   cursor: pointer;
-  color: rgb(57, 34, 186);
 }
 .list-li:hover{
-  background-color: #facf38;
+  background-color: #fac459;
 }
 
 /*---------------------------------------*/
+.list-content-wrap{
+
+
+  /*position: relative;*/
+}
 
 .list-content-all{
-  background: #fff;
-  position: absolute;
-  top: 0;
-  left:0;
-  width: 450px;
-  height: 86vh;
-  overflow: scroll;
-  /*padding: 30px;*/
-  z-index: 80;
-  border-radius: 5px;
+  height: 550px;
+
+
 }
 .list-content{
   /*padding: 30px;*/
-  border: 1px solid gray;
+  /*border: 1px solid gray;*/
   cursor: pointer;
   /*background: #62d;*/
   position: relative;
-  height: 28vh;
+  overflow: hidden;
+
+  /*height: 28vh;*/
   /*margin-bottom: 6px;*/
 }
 
@@ -410,8 +417,8 @@ padding: 5px;
   top: 0px;
   left:0px;
   width: 100%;
-  height: 86vh;
-  padding: 30px;
+  /*height: 86vh;*/
+  /*padding: 30px;*/
   z-index: 40;
   border-radius: 5px;
   font-size: 12px;
@@ -448,10 +455,12 @@ padding: 5px;
 
 .file-upload-wrap{
   background: #fff;
-  height: 27vh;
+  height: 150px;
   border: 1px solid #ECECEC;
   border-radius: 3px;
   margin: 5px 0;
+  padding: 90px 100px 100px 100px;
+
 }
 
 .file-upload{
@@ -478,9 +487,9 @@ padding: 5px;
   height: 208px;
 }
 .upload-btn{
-  position: absolute;
-  bottom: 23vh;
-  left: 135px;
+  /*position: absolute;
+  bottom: 17vh;
+  left: 111px;*/
 
 }
 /*.view-list{
@@ -620,8 +629,8 @@ padding: 5px;
   border-radius: 4px;
   color: #fff;
   position: fixed;
-  bottom: 30vh;
-  left: 259px;
+  bottom: 28vh;
+  left: 272px;
   /*transform: translate(-50%);*/
 
 
@@ -630,63 +639,6 @@ padding: 5px;
   background: black;
 }
 
-.egg-wrap,.intro-comment-wrap{
-  /*background: #000;*/
-  display: flex;
-width: 100%;
-height: 100%;
-position: absolute;
-top: 0px;
-justify-content: center;
-align-items: center;
-position: absolute;
-}
-
-.egg{
-  background: #fff;
-  width: 200px;
-  height: 200px;
-  /*position: relative;
-  top: -477px;
-  right: -256px;*/
-  display: flex;
-  justify-content: center;
-  display: inline-block;
-  border-radius: 50%;
-
-
-}
-
-.egg:hover{
-  width: 202px;
-  height: 202px;
-  top: -476px;
-  right: -255px;
-  border: 10px solid #fff;
-}
-
-.intro-comment{
-  display: flex;
-  justify-content: center;
-  align-self:flex-end;
-
-  display: inline-block;
-  border-radius: 50%;
-  /*position: absolute;
-  top: 464px;
-  left: 167px;*/
-  color: #fff;
-  font-size: 25px;
-  margin-bottom: 170px;
-
-}
-
-.intro-comment strong{
-  color: #fff;
-  font-size: 32px;
-  font-weight: 800;
-
-}
 
 
 /*==============================================*/
@@ -698,9 +650,10 @@ position: absolute;
 
 
   <div class="container" id="app">
-    <div class="add-story" :class="{'open': formOpen}">
+
+    <div class="add-story" :class="{'open':formOpen}">
       <!-- <div class="egg">gmlsek</div> -->
-      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">click here</div>
+      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">삶은달걀</div>
 
       <form @submit="cancel">
 
@@ -711,7 +664,7 @@ position: absolute;
           </ul>
         </nav>
 
-
+          <div class="list-content-wrap">
           <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
             <li class="list-content"  @click="viewOpen">
               <strong class="list-content-titie">제목제목제목제목제목제목제목제목</strong>
@@ -734,6 +687,7 @@ position: absolute;
               <img class="list-img" src="cat.jpg">
             </li>
           </ul>
+          </div>
 
 
         <div class="view-list" :class="{'open':viewOpen}"  v-show="viewitem" >
@@ -818,22 +772,19 @@ position: absolute;
         </div>
 
         <!-- <input class="file-upload" type="file" multiple /> -->
+        <div class="submit-button-wrap">
         <button type="submit" class="submit-button">save</button>
+        </div>
     </div>
 
       </form>
     </div>
     <div v-show="formOpen" class="cancel" @click="cancel"><span >X</span></div>
-
-
+    <!-- <div class="egg">qqqqq</div> -->
 
   </div>
-  <div class="egg-wrap">
-  <div class="egg"></div>
-  </div>
-  <div class="intro-comment-wrap">
-  <div class="intro-comment">나의 사진일기 <strong>노른자 Diary</strong></div>
-</div>
+
+
 <!-- JS Library & Framework -->
 <!-- <script src="https://unpkg.com/jquery"></script> -->
 <script src="https://unpkg.com/vue"></script>
