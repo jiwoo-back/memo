@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>memo</title>
+  <!-- style -->
+  <style>
+  /*@charset "UTF-8";*/
+
+  *{
+    box-sizing: border-box;
+  }
+
+
+
+    body {
+    margin: 0 auto;
+    padding: 0;
+    /*min-height: 100vh;
+    height: 100%;*/
+    background: #48befe;
+    }
+
+  h1, h2, h3, h4, ul, p, iframe, section, button, input, div, li, ul, ol, dd, dl{
+    margin: 0;
+    padding: 0;
+    border: 0;}
+
+
+  li{
+    list-style: none;
+  }
+
+
+  a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    }
+
+
+  button{
+    outline: none;
+    background: none;
+  }
+
+
+  dd{
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  textarea{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+.blind{
+  font-size: 0;
+}
+
+#app{
+  width: 100%;
+}
+
+.warpper{
+  /*width: 100%;
+  height: 100%;
+  background: #d8c;*/
+  margin: 0 auto;
+}
+
+.container {
+background-image: gray;
+/*display: flex;
+width: 100%;
+height: 100%;
+justify-content: center;
+align-items: center;*/
+position: relative;
+
+/*top: 100%;
+left: 100%;
+transform: translate(-50% , -50%);*/
+}
+.add-story.off{
+  transition: all 0.2s ease;
+  background-color: #ffbc36;
+  height: 144px;
+  width: 144px;
+  border-radius: 45%;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  padding: 10px;
+  font-size: 26px;
+  margin: 300px auto 0 auto;
+  position: relative;
+}
+.add-story {
+margin: 50px auto;
+position: relative;
+/*z-index: 80*/
+}
+.add-story.off::after {
+content: '';
+display: block;
+margin: 50px auto;
+width: 300px;
+height: 300px;
+background: #fff;
+position: absolute;
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: -1;
+border-radius: 50%;
+}
+
+.add-story:hover {
+transition: all 0.3s ease;
+background-color: #ffb520;
+height: 150px;
+width: 150px;
+border-radius: 50%;
+box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
+cursor: pointer;
+}
+
+.add-story.open {
+background-color: #FAFAFA;
+padding: 18px 32px;
+border-radius: 5px;
+width: 450px;
+height: 86vh;
+cursor: default;
+}
+.add-story.open form {
+opacity: 1;
+transition: opacity 0.1s ease;
+transition-delay: 0.3s;
+/*height: auto;*/
+}
+.add-story .button-copy {
+text-align: center;
+line-height: 144px;
+font-weight: bold;
+color: #f7f7f7;
+}
+
+.add-story form {
+transition: none;
+opacity: 0;
+/*height: 0;*/
+/*overflow: hidden;*/
+}
+.cancel {
+text-align: center;
+background: rgb(203, 203, 203);
+width: 50px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+padding-top: 3px;
+position: absolute;
+/*position: relative;*/
+top: -25px;
+right: -24px;
+cursor: pointer;
+z-index: 100;
+filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.1));
+color: #fff;
+font-size: 22px;
+font-weight: 200;
+/*left: 50%;*/
+/*transform: translate(-50%);*/
+}
+.cancel:hover{
+  background: #adadad;
+}
+.add-story .cancel span {
+cursor: pointer;
+font-size: 2rem
+}
+.add-story .cancel span:hover {
+text-decoration: underline;
+
+}
+
+.submit-button {
+display: block;
+background-color: #3498DB;
+height: 40px;
+border-radius: 20px;
+line-height: 36px;
+text-align: center;
+color: #fff;
+text-transform: uppercase;
+font-size: 15px;
+font-weight: 700;
+padding: 0 34px;
+margin: 0 auto;
+position: absolute;
+bottom: 4vh;
+left: 169px;
+}
+.submit-button img {
+position: absolute;
+background: #303;
+top: 3px;
+right: 6px;
+}
+.submit-button:hover {
+background-color: #217dbb;
+cursor: pointer;
+}
+
+form * {
+outline: none;
+}
+
+
+label {
+/*display: block;*/
+font-size: 4px;
+font-weight: bold;
+user-select: none;
+padding-left: 5px;
+/*padding: 10px;*/
+}
+label.sunny input {
+/*appearance: none;*/
+/*height: 21px;*/
+
+display: none;
+}
+label.sunny input + span:after {
+content: "☀️";
+font-size: 18px;
+}
+label.sunny input:checked + span:after {
+content: "🌤";
+}
+label.sunnyandcloudy input {
+display: none;
+}
+label.sunnyandcloudy input + span:after {
+content: "🌤";
+font-size: 18px;
+}
+label.sunnyandcloudy input:checked + span:after {
+content: "⛅️";
+}
+label.cloudy input {
+display: none;
+}
+label.cloudy input + span:after {
+content: "🌩";
+font-size: 18px;
+
+}
+label.cloudy input:checked + span:after {
+content: "⛈";
+}
+label.rainy input {
+display: none;
+}
+label.rainy input + span:after {
+content: "☂️";
+font-size: 18px;
+}
+label.rainy input:checked + span:after {
+content: "☔️";
+}
+label.snow input {
+display: none;
+}
+label.snow input + span:after {
+content: "⛄️";
+font-size: 18px;
+}
+label.snow input:checked + span:after {
+content: "☃️";
+}
+
+/*
+.form--field.-short {
+width: 1000px;
+background: #343;
+}*/
+
+.form--field{
+  font-size: 0
+}
+
+
+
+.form--element {
+/*background-color: #19c;*/
+border: 1px solid #ECECEC;
+border-radius: 3px;
+font-size: 14px;
+padding: 3px 4px;
+color: #3D3D3D;
+width: 100%;
+height: 5vh;
+margin: 5px 0;
+}
+
+.form--element:focus {
+border: 1px solid #FFC145;
+border-radius: 2px;
+}
+
+.form--element.textarea {
+height: 31vh;
+resize: none;
+padding: 5px;
+}
+
+
+
+/*-------------------------*/
+.list-ul{
+  width: 80px;
+  position: absolute;
+  /*background-color: rgb(94, 69, 235);*/
+  left: -75px;
+  top: 17px;
+  border-radius: 3px 0 0 3px;
+  font-size: 18px;
+  list-style-type: none;
+  text-align: right;
+  z-index: 99;
+
+}
+
+.list-li{
+  text-align: center;
+  padding: 10px 8px;
+  margin: 5px;
+  background: #ffe536;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+  color: rgb(57, 34, 186);
+}
+.list-li:hover{
+  background-color: #facf38;
+}
+
+/*---------------------------------------*/
+
+.list-content-all{
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 450px;
+  height: 86vh;
+  overflow: scroll;
+  /*padding: 30px;*/
+  z-index: 80;
+  border-radius: 5px;
+}
+.list-content{
+  /*padding: 30px;*/
+  border: 1px solid black;
+  cursor: pointer;
+  /*background: #62d;*/
+  position: relative;
+  height: 34.333333vh;
+  /*margin-bottom: 6px;*/
+}
+
+.list-content-titie{
+  font-size: 18px;
+  /*background: #342;*/
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  /*margin-bottom: 30px;*/
+  /*padding-right: 200px;*/
+  /*width: 180px;*/
+}
+
+.list-content-date{
+  /*background: #109;*/
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 15px
+}
+.list-content-li{
+  overflow: hidden;
+}
+
+.list-content:hover{
+  background-color: rgba(1,1,1 0.5);
+  transition: all 0.5s;
+}
+
+.list-img{
+  background: #392;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  height: 100%
+  /*padding: 10px*/
+  /*transform: translate(-50%, -50%);*/
+}
+.list-img::before:hover{
+  content: '';
+
+}
+
+/**/
+.list-content>strong{
+  /*background-color: rgb(8, 81, 85);*/
+  width: 65%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+}
+/*------------------------------------------*/
+.view-list-wrap{
+  background: #fff;
+  position: absolute;
+  top: 0px;
+  left:0px;
+  width: 450px;
+  height: 86vh;
+  padding: 30px;
+  z-index: 40;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.date_wheater{
+  background-color: rgb(251, 1, 17)
+
+}
+.date_wheater::after{
+  content: "";
+  display: block;
+  clear: both;
+
+}
+.date-wrapper{
+  width: 50%;
+  float: left;
+}
+
+.weather-wrap{
+  margin-top: 12px;
+  font-size: 14px;
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /*background-color: rgb(120, 133, 43);*/
+  float: right;
+}
+
+.weather{
+}
+
+.file-upload-wrap{
+  background: #fff;
+  height: 27vh;
+  border: 1px solid #ECECEC;
+  border-radius: 3px;
+  margin: 5px 0;
+  position: relative;
+}
+
+.file-upload{
+  background: #302;
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  /*margin-top: -150px;*/
+}
+
+.upload-wrapper{
+  /*background: #39c;*/
+  width: 100%;
+  height: 208px;
+  overflow: scroll;
+  border: 1px solid #ECECEC;
+  border-radius: 3px;
+  position: relative;
+  background: #fff;
+}
+
+.drag-img{
+  width: 20%;
+  height: 208px;
+}
+.upload-btn{
+  position: absolute;
+  bottom: 23vh;
+  left: 135px;
+
+}
+/*.view-list{
+  background-color: blue;
+  z-index: 4444
+}*/
+
+/*==============================================*/
+ .days {
+   /*background: #390;*/
+   height: 35px;
+   border-bottom: 2px solid gray;
+
+ }
+ .days::after {
+   content: "";
+   clear: both;
+   display: block;
+
+ }
+
+ .days-ul{
+   /*background: #203;*/
+   /*content: "";
+   clear: both;
+   display: block;*/
+
+ }
+
+ .days-list{
+   float: left;
+   /*background: #30d;*/
+   padding: 0 2px;
+ }
+
+ .days-list::after{
+   content: "";
+   clear: both;
+   display: block;
+ }
+
+ .days-weather{
+   /*background: #39c;*/
+   float: right;
+   padding: 0 10px
+ }
+ /*.days-weather::after{
+   content: "";
+   clear: both;
+   display: block;
+  }*/
+
+ .days-img{
+   width: 100%;
+   height: 29vh;
+   /*overflow: hidden;*/
+   /*margin-top: 100px;*/
+   /*background: #87c;*/
+   margin-top: 20px;
+   float: right;
+
+ }
+
+ .days-img img{
+   /*width: 100%;*/
+   height: 100%;
+   position: relative;
+   left: 50%;
+   transform: translate(-50%);
+ }
+ .days-img::after{
+   content: "";
+   clear: both;
+   display: block;
+ }
+ .days-letter{
+   /*background: #63c;*/
+   margin-top: 20px;
+   float: right;
+   width: 100%;
+ }
+
+ /*.days-letter::after{
+   content: "";
+   display: block;
+   height: 100px;
+   background-color: rgb(20, 162, 40)
+ }*/
+
+ .days-title{
+   /*background: #03d;*/
+/* float: right; */
+   margin-bottom: 10px;
+   display: block;
+   /*text-align: center;*/
+   font-size: 22px;
+
+   /*border-bottom: 1px solid gray;*/
+
+ }
+
+ .days-span{
+   /*background-color: rgb(251, 94, 78);*/
+   position: relative;
+   line-height: 20px;
+   text-align: justify
+ }
+
+ .days-span::after{
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: block;
+   /*background: rgb(22, 244, 238);*/
+   background: linear-gradient(to bottom, transparent 19px, black 19px);
+   background-size: 1px 20px;
+   /*z-index: 99999*/
+   content: "";
+   height: 100%;
+   width: 100%;
+   /*opacity: 0.3;*/
+ }
+
+
+.upload-image{
+ width: 100%;
+ margin: auto;
+ display: block;
+ margin-bottom: 10px;
+ background: #309;
+}
+
+.upload-image-comment{
+  padding: 110px;
+  width: 100%;
+  height: 100px;
+  color: gray;
+
+}
+
+.rmv-btn{
+  background: gray;
+padding: 2px 8px;
+top: 0;
+right: 0;
+color: #fff;
+display: inline-block;
+position: absolute;
+
+
+  /*transform: translate(-50%);*/
+
+
+}
+.rmv-btn:hover{
+  background: black;
+}
+
+.intro-comment-wrap{
+  margin-top: 100px;
+  text-align: center;
+
+}
+
+.egg{
+  background: #fff;
+  width: 200px;
+  height: 200px;
+  /*position: relative;
+  top: -477px;
+  right: -256px;*/
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  border-radius: 50%;
+
+
+}
+
+.egg:hover{
+  width: 202px;
+  height: 202px;
+  top: -476px;
+  right: -255px;
+  border: 10px solid #fff;
+}
+
+.intro-comment{
+  /*display: flex;
+  justify-content: center;
+  align-self:flex-end;
+
+  display: inline-block;
+  border-radius: 50%;*/
+  /*position: absolute;
+  top: 464px;
+  left: 167px;*/
+  color: #fff;
+  font-size: 25px;
+  /*margin-bottom: 170px;*/
+
+}
+
+.intro-comment strong{
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+
+}
+
+
+/*==============================================*/
+
+
+  </style>
+</head>
+<body>
+
+
+  <div class="container" id="app">
+    <!-- <div class="warpper"> -->
+    <div class="add-story" :class="{'open': formOpen, 'off': !formOpen}">
+      <!-- <div class="egg">gmlsek</div> -->
+      <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">click here</div>
+
+      <form @submit="cancel">
+
+        <nav class="list">
+          <ul class="list-ul">
+            <li class="list-li" @click="showWrite"><a>write</a></li>
+            <li class="list-li" @click="showlist"><a>list</a></li>
+          </ul>
+        </nav>
+
+
+          <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img src="imgs/salad.jpg" class="list-img" >
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="imgs/flower.jpg">
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="imgs/paris.jpeg">
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img class="list-img" src="imgs/path.jpeg">
+            </li>
+          </ul>
+
+
+        <div class="view-list" :class="{'open':viewOpen}"  v-show="viewitem" >
+          <div class="view-list-wrap">
+            <h3 class="blind">제목</h3>
+           <div class="days">
+
+            <ul class="days-ul">
+              <li class="days-list">2월</li>
+              <li class="days-list">2일</li>
+              <li class="days-list">2요일</li>
+            </ul>
+            <div class="days-weather">날씨
+              <strong>{{weatherpicked}}</strong>
+            </div>
+            <div class="days-img-wrap"><img src="imgs/flower.jpg" alt="" class="days-img"></div>
+            <div class="days-letter">
+              <h3 class="days-title">{{diaryData.title}}</h3>
+              <p class="days-span">{{diaryData.diary}}</p>
+            </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+      <div class="view-add" v-show="viewwrite" >
+        <div class="form--field date-wrapper">
+          <!-- <label class="blind date">날씨</label> -->
+          <input class="form--element form--element-wheater" type="date" v-model="diaryData.date" />
+        </div>
+
+        <div class="weather-wrap">
+          날씨:
+        <label class="weather sunny">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="맑음">
+          <span></span>
+        </label>
+        <label class="weather sunnyandcloudy">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="흐림">
+          <span></span>
+        </label>
+        <label class="weather cloudy">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="흐린뒤비">
+          <span></span>
+        </label>
+        <label class="weather rainy">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="비">
+          <span></span>
+        </label>
+        <label class="weather snow">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="눈">
+          <span></span>
+        </label>
+
+        </div>
+
+        <!-- <div class="form--field">
+          <label class="blind">날씨</label>
+          <input type="datetime-local" v-model="diaryData.date" />
+        </div> -->
+        <div class="form--field">
+          <label class="blind">제목</label>
+          <input type="text" class="form--element form--element-Title" name="title" v-model="diaryData.title" placeholder="제목을 입력하세요" required="">
+        </div>
+
+
+
+          <div class="form--field">
+          <label class="blind">내용</label>
+          <textarea class="form--element textarea" v-model="diaryData.diary" placeholder="일기를 작성해주세요" style="white-space: pre">
+          </textarea>
+        </div>
+
+        <div  class="file-upload-wrap" @drop="drop(this.event)" @dragenter="dragenter" @dragover="dragover" >
+          <!-- <input type="file" @change="onFileChange" class="upload-btn"> -->
+          <img v-if="image" class="upload-image" :src="image" >
+          <p class="upload-image-comment" placeholder="이미지를 드레그 해주세요"></p>
+          <button class="rmv-btn" @click="removeImage">파일 삭제</button>
+        </div>
+
+
+        <!-- <div class="upload-wrapper"> -->
+          <!-- <img class="upload-image" :src="image" > -->
+        <!-- </div> -->
+
+        <!-- <input class="file-upload" type="file" multiple /> -->
+        <button type="submit" class="submit-button">save</button>
+    </div>
+
+    <div v-show="formOpen" class="cancel" @click="cancel"><span >X</span></div>
+      </form>
+    </div>
+
+    <!-- <div class="egg-wrap"> -->
+      <!-- <div class="egg"></div> -->
+    <!-- </div> -->
+    <div class="intro-comment-wrap">
+      <div class="intro-comment">나의 사진일기 <strong>노른자 Diary</strong></div>
+  <!-- </div> -->
+
+  </div>
+</div>
+<!-- JS Library & Framework -->
+<!-- <script src="https://unpkg.com/jquery"></script> -->
+<script src="https://unpkg.com/vue"></script>
+
+<!-- script -->
+<script data-type="data">
+var data = {
+
+};
+</script>
+
+
+<script data-type="vue">
+var vue = new Vue({
+  el: '#app',
+  data: {
+    image:'',
+    formOpen: false,
+    viewitem: false,
+    viewwrite: false,
+    listOpen: false,
+    viewlists: false,
+    // write: false,
+
+
+    diaryData: {
+      date: '',
+      title: '',
+      weather: '',
+      diary:'',
+      img:''
+    }
+  },
+  methods: {
+    cancel: function() {
+      this.formOpen = false;
+      this.viewitem = false;
+      this.viewlists = false;
+      this.viewwrite = false;
+
+    },
+    showlist(){
+      this.viewitem = false;
+      this.viewlists = true;
+      this.viewwrite = false;
+
+
+    },
+    showWrite(){
+      this.viewitem = false;
+      this.viewlists = false;
+      this.viewwrite = true;
+
+    },
+    viewOpen: function() {
+      this.viewitem = true;
+      this.viewlists = false;
+      console.log("llllll")
+    },
+
+    dragenter(e){
+      e.stopPropagation();
+      e.preventDefault();
+      console.log("dragenter");
+    },
+
+    dragover(e){
+      e.stopPropagation();
+      e.preventDefault();
+      console.log("dragover");
+
+    },
+    drop(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      console.log("files:",files)
+      this.createImage(files[0]);
+
+    },
+
+
+    onFileChange(e){
+      var files = e.target.files || e.dataTransfer.files;
+      console.log("onFileChange");
+      // console.log("e.dataTrnasfer.files:",e.dataTransfer.files)
+      console.log("e.target.files:",e.target.files)
+      if(!files.length)
+       return;
+       console.log("files.length:",files.length);
+       this.createImage(files[0]);
+    },
+    createImage(file){
+      // var image = new Image();
+      // vm.image = e.target.result;
+
+      // var image = new Image();
+
+      var reader = new FileReader();
+      var vm = this;
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+
+    },
+
+  }
+})
+
+
+
+
+</script>
+
+
+</body>
+</html>
