@@ -206,8 +206,8 @@ font-weight: 700;
 padding: 0 34px;
 margin: 0 auto;
 position: absolute;
-bottom: 3vh;
-left: 156px;
+bottom: 4vh;
+left: 169px;
 }
 .submit-button img {
 position: absolute;
@@ -433,7 +433,7 @@ padding: 5px;
   position: absolute;
   top: 0px;
   left:0px;
-  width: 420px;
+  width: 450px;
   height: 86vh;
   padding: 30px;
   z-index: 40;
@@ -457,7 +457,7 @@ padding: 5px;
 }
 
 .weather-wrap{
-  margin-top: 5px;
+  margin-top: 12px;
   font-size: 14px;
   width: 45%;
   display: flex;
@@ -476,6 +476,7 @@ padding: 5px;
   border: 1px solid #ECECEC;
   border-radius: 3px;
   margin: 5px 0;
+  position: relative;
 }
 
 .file-upload{
@@ -637,15 +638,24 @@ padding: 5px;
  background: #309;
 }
 
+.upload-image-comment{
+  padding: 110px;
+  width: 100%;
+  height: 100px;
+  color: gray;
+
+}
+
 .rmv-btn{
   background: gray;
-  margin: 0 auto;
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: #fff;
-  position: fixed;
-  bottom: 30vh;
-  left: 259px;
+padding: 2px 8px;
+top: 0;
+right: 0;
+color: #fff;
+display: inline-block;
+position: absolute;
+
+
   /*transform: translate(-50%);*/
 
 
@@ -733,22 +743,22 @@ padding: 5px;
 
           <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
             <li class="list-content"  @click="viewOpen">
-              <strong class="list-content-titie">제목제목제목제목제목제목제목제목</strong>
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
+              <date class="list-content-date">2017-04-28</date>
+              <img src="cat.jpg" class="list-img" >
+            </li>
+            <li class="list-content"  @click="viewOpen">
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
               <date class="list-content-date">2017-04-28</date>
               <img class="list-img" src="cat.jpg">
             </li>
             <li class="list-content"  @click="viewOpen">
-              <strong class="list-content-titie">제목</strong>
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
               <date class="list-content-date">2017-04-28</date>
               <img class="list-img" src="cat.jpg">
             </li>
             <li class="list-content"  @click="viewOpen">
-              <strong class="list-content-titie">제목</strong>
-              <date class="list-content-date">2017-04-28</date>
-              <img class="list-img" src="cat.jpg">
-            </li>
-            <li class="list-content"  @click="viewOpen">
-              <strong class="list-content-titie">제목</strong>
+              <strong class="list-content-titie">{{diaryData.title}}</strong>
               <date class="list-content-date">2017-04-28</date>
               <img class="list-img" src="cat.jpg">
             </li>
@@ -766,12 +776,12 @@ padding: 5px;
               <li class="days-list">2요일</li>
             </ul>
             <div class="days-weather">날씨
-              <strong>흐림</strong>
+              <strong>{{weatherpicked}}</strong>
             </div>
             <div class="days-img-wrap"><img src="./cat.jpg" alt="" class="days-img"></div>
             <div class="days-letter">
-              <h3 class="days-title">제목</h3>
-              <p class="days-span">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h3 class="days-title">{{diaryData.title}}</h3>
+              <p class="days-span">{{diaryData.diary}}</p>
             </div>
 
 
@@ -783,29 +793,29 @@ padding: 5px;
       <div class="view-add" v-show="viewwrite" >
         <div class="form--field date-wrapper">
           <!-- <label class="blind date">날씨</label> -->
-          <input class="form--element form--element-wheater" type="date" v-model="productData.date" />
+          <input class="form--element form--element-wheater" type="date" v-model="diaryData.date" />
         </div>
 
         <div class="weather-wrap">
           날씨:
         <label class="weather sunny">
-          <input type="checkbox" name="weather" v-bind="productData.weather">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="맑음">
           <span></span>
         </label>
         <label class="weather sunnyandcloudy">
-          <input type="checkbox" name="weather" v-bind="productData.weather">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="흐림">
           <span></span>
         </label>
         <label class="weather cloudy">
-          <input type="checkbox" name="weather" v-bind="productData.weather">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="흐린뒤비">
           <span></span>
         </label>
         <label class="weather rainy">
-          <input type="checkbox" name="weather" v-bind="productData.weather">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="비">
           <span></span>
         </label>
         <label class="weather snow">
-          <input type="checkbox" name="weather" v-bind="productData.weather">
+          <input type="radio" name="weather" v-bind="diaryData.weather" v-model="weatherpicked" value="눈">
           <span></span>
         </label>
 
@@ -813,24 +823,25 @@ padding: 5px;
 
         <!-- <div class="form--field">
           <label class="blind">날씨</label>
-          <input type="datetime-local" v-model="productData.date" />
+          <input type="datetime-local" v-model="diaryData.date" />
         </div> -->
         <div class="form--field">
           <label class="blind">제목</label>
-          <input type="text" class="form--element form--element-Title" name="title" v-model="productData.title" placeholder="Title" required="">
+          <input type="text" class="form--element form--element-Title" name="title" v-model="diaryData.title" placeholder="제목을 입력하세요" required="">
         </div>
 
 
 
           <div class="form--field">
           <label class="blind">내용</label>
-          <textarea class="form--element textarea" v-model="productData.description" placeholder="0000000000">
+          <textarea class="form--element textarea" v-model="diaryData.diary" placeholder="일기를 작성해주세요" style="white-space: pre">
           </textarea>
         </div>
 
         <div  class="file-upload-wrap" @drop="drop(this.event)" @dragenter="dragenter" @dragover="dragover" >
           <!-- <input type="file" @change="onFileChange" class="upload-btn"> -->
           <img v-if="image" class="upload-image" :src="image" >
+          <p class="upload-image-comment" placeholder="이미지를 드레그 해주세요"></p>
           <button class="rmv-btn" @click="removeImage">파일 삭제</button>
         </div>
 
@@ -879,10 +890,14 @@ var vue = new Vue({
     listOpen: false,
     viewlists: false,
     // write: false,
-    productData: {
+
+
+    diaryData: {
       date: '',
       title: '',
       weather: '',
+      diary:'',
+      img:''
     }
   },
   methods: {
@@ -929,7 +944,6 @@ var vue = new Vue({
       e.preventDefault();
       var files = e.dataTransfer.files;
       console.log("files:",files)
-
       this.createImage(files[0]);
 
     },
@@ -961,7 +975,8 @@ var vue = new Vue({
     removeImage: function (e) {
       this.image = '';
 
-    }
+    },
+
   }
 })
 
