@@ -13,12 +13,12 @@
   }
 
 
-    html,
+
     body {
     margin: 0 auto;
     padding: 0;
-    min-height: 100vh;
-    height: 100%;
+    /*min-height: 100vh;
+    height: 100%;*/
     background: #48befe;
     }
 
@@ -63,28 +63,61 @@
   font-size: 0;
 }
 
+#app{
+  width: 100%;
+}
+
+.warpper{
+  /*width: 100%;
+  height: 100%;
+  background: #d8c;*/
+  margin: 0 auto;
+}
+
 .container {
 background-image: gray;
-display: flex;
+/*display: flex;
 width: 100%;
 height: 100%;
 justify-content: center;
-align-items: center;
+align-items: center;*/
 position: relative;
-}
 
+/*top: 100%;
+left: 100%;
+transform: translate(-50% , -50%);*/
+}
+.add-story.off{
+  transition: all 0.2s ease;
+  background-color: #ffbc36;
+  height: 144px;
+  width: 144px;
+  border-radius: 45%;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  padding: 10px;
+  font-size: 26px;
+  margin: 300px auto 0 auto;
+  position: relative;
+}
 .add-story {
-transition: all 0.3s ease;
-background-color: #ffbc36;
-height: 144px;
-width: 144px;
-border-radius: 45%;
-box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
-cursor: pointer;
-padding: 10px;
-font-size: 26px;
+margin: 50px auto;
+position: relative;
+/*z-index: 80*/
+}
+.add-story.off::after {
+content: '';
+display: block;
+margin: 50px auto;
+width: 300px;
+height: 300px;
+background: #fff;
 position: absolute;
-z-index: 80
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: -1;
+border-radius: 50%;
 }
 
 .add-story:hover {
@@ -134,9 +167,10 @@ align-items: center;
 justify-content: center;
 border-radius: 50%;
 padding-top: 3px;
-position: relative;
-top: -43vh;
-right: -225px;
+position: absolute;
+/*position: relative;*/
+top: -25px;
+right: -24px;
 cursor: pointer;
 z-index: 100;
 filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.1));
@@ -264,17 +298,7 @@ background: #343;
   font-size: 0
 }
 
-/*.form--container {
-width: 420px;
-background: #902;
-}*/
-.form--container .-inline {
-/*display: flex;*/
-/*flex-direction: row;*/
-/*justify-content: space-between;*/
-/*margin-bottom: -12px;*/
-/*background: #390;*/
-}
+
 
 .form--element {
 /*background-color: #19c;*/
@@ -630,16 +654,10 @@ padding: 5px;
   background: black;
 }
 
-.egg-wrap,.intro-comment-wrap{
-  /*background: #000;*/
-  display: flex;
-width: 100%;
-height: 100%;
-position: absolute;
-top: 0px;
-justify-content: center;
-align-items: center;
-position: absolute;
+.intro-comment-wrap{
+  margin-top: 100px;
+  text-align: center;
+
 }
 
 .egg{
@@ -666,18 +684,18 @@ position: absolute;
 }
 
 .intro-comment{
-  display: flex;
+  /*display: flex;
   justify-content: center;
   align-self:flex-end;
 
   display: inline-block;
-  border-radius: 50%;
+  border-radius: 50%;*/
   /*position: absolute;
   top: 464px;
   left: 167px;*/
   color: #fff;
   font-size: 25px;
-  margin-bottom: 170px;
+  /*margin-bottom: 170px;*/
 
 }
 
@@ -698,7 +716,8 @@ position: absolute;
 
 
   <div class="container" id="app">
-    <div class="add-story" :class="{'open': formOpen}">
+    <!-- <div class="warpper"> -->
+    <div class="add-story" :class="{'open': formOpen, 'off': !formOpen}">
       <!-- <div class="egg">gmlsek</div> -->
       <div class="button-copy" v-show="!formOpen" @click="formOpen = true, viewwrite=true">click here</div>
 
@@ -821,18 +840,18 @@ position: absolute;
         <button type="submit" class="submit-button">save</button>
     </div>
 
+    <div v-show="formOpen" class="cancel" @click="cancel"><span >X</span></div>
       </form>
     </div>
-    <div v-show="formOpen" class="cancel" @click="cancel"><span >X</span></div>
 
-
+    <!-- <div class="egg-wrap"> -->
+      <!-- <div class="egg"></div> -->
+    <!-- </div> -->
+    <div class="intro-comment-wrap">
+      <div class="intro-comment">나의 사진일기 <strong>노른자 Diary</strong></div>
+  <!-- </div> -->
 
   </div>
-  <div class="egg-wrap">
-  <div class="egg"></div>
-  </div>
-  <div class="intro-comment-wrap">
-  <div class="intro-comment">나의 사진일기 <strong>노른자 Diary</strong></div>
 </div>
 <!-- JS Library & Framework -->
 <!-- <script src="https://unpkg.com/jquery"></script> -->
@@ -854,7 +873,7 @@ var vue = new Vue({
     formOpen: true,
     viewitem: false,
     viewwrite: true,
-    listOpen: true,
+    listOpen: false,
     viewlists: false,
     // write: false,
     productData: {
