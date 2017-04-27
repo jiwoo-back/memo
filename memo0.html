@@ -780,10 +780,17 @@ var vue = new Vue({
       var image = new Image();
       var reader = new FileReader();
       var vm = this;
-      reader.onload = (e) => {
-        vm.image = e.target.result;
-      };
+      console.log("reader:",reader)
+
       reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        console.log("reader.result:",reader.result)
+        console.log("e.target.result:",e.target.result)
+
+        vm.image = e.target.result;
+        console.log("e:",e)
+        console.log("reader:",reader)
+      };
     },
     removeImage: function (e) {
       this.image = '';

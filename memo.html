@@ -369,11 +369,11 @@ padding: 5px;
 }
 .list-content{
   /*padding: 30px;*/
-  border: 1px solid gray;
+  border: 1px solid black;
   cursor: pointer;
   /*background: #62d;*/
   position: relative;
-  height: 28vh;
+  height: 34.333333vh;
   /*margin-bottom: 6px;*/
 }
 
@@ -433,7 +433,7 @@ padding: 5px;
   position: absolute;
   top: 0px;
   left:0px;
-  width: 100%;
+  width: 420px;
   height: 86vh;
   padding: 30px;
   z-index: 40;
@@ -515,7 +515,7 @@ padding: 5px;
 /*==============================================*/
  .days {
    /*background: #390;*/
-   height: 27px;
+   height: 35px;
    border-bottom: 2px solid gray;
 
  }
@@ -559,11 +559,11 @@ padding: 5px;
 
  .days-img{
    width: 100%;
-   height: 25vh;
+   height: 29vh;
    /*overflow: hidden;*/
    /*margin-top: 100px;*/
    /*background: #87c;*/
-   margin-top: 12px;
+   margin-top: 20px;
    float: right;
 
  }
@@ -789,23 +789,23 @@ padding: 5px;
         <div class="weather-wrap">
           날씨:
         <label class="weather sunny">
-          <input type="radio" name="weather" v-bind="productData.weather">
+          <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
         <label class="weather sunnyandcloudy">
-          <input type="radio" name="weather" v-bind="productData.weather">
+          <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
         <label class="weather cloudy">
-          <input type="radio" name="weather" v-bind="productData.weather">
+          <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
         <label class="weather rainy">
-          <input type="radio" name="weather" v-bind="productData.weather">
+          <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
         <label class="weather snow">
-          <input type="radio" name="weather" v-bind="productData.weather">
+          <input type="checkbox" name="weather" v-bind="productData.weather">
           <span></span>
         </label>
 
@@ -828,13 +828,16 @@ padding: 5px;
           </textarea>
         </div>
 
-        <div v-if="!image" class="file-upload-wrap">
-          <input type="file" @change="onFileChange" class="upload-btn">
+        <div  class="file-upload-wrap" @drop="drop(this.event)" @dragenter="dragenter" @dragover="dragover" >
+          <!-- <input type="file" @change="onFileChange" class="upload-btn"> -->
+          <img v-if="image" class="upload-image" :src="image" >
+          <button class="rmv-btn" @click="removeImage">파일 삭제</button>
         </div>
-        <div class="upload-wrapper" v-else>
-          <img class="upload-image" :src="image" />
-            <button class="rmv-btn" @click="removeImage">파일 삭제</button>
-        </div>
+
+
+        <!-- <div class="upload-wrapper"> -->
+          <!-- <img class="upload-image" :src="image" > -->
+        <!-- </div> -->
 
         <!-- <input class="file-upload" type="file" multiple /> -->
         <button type="submit" class="submit-button">save</button>
@@ -909,14 +912,45 @@ var vue = new Vue({
       console.log("llllll")
     },
 
+    dragenter(e){
+      e.stopPropagation();
+      e.preventDefault();
+      console.log("dragenter");
+    },
+
+    dragover(e){
+      e.stopPropagation();
+      e.preventDefault();
+      console.log("dragover");
+
+    },
+    drop(e){
+      e.stopPropagation();
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      console.log("files:",files)
+
+      this.createImage(files[0]);
+
+    },
+
+
     onFileChange(e){
       var files = e.target.files || e.dataTransfer.files;
+      console.log("onFileChange");
+      // console.log("e.dataTrnasfer.files:",e.dataTransfer.files)
+      console.log("e.target.files:",e.target.files)
       if(!files.length)
        return;
+       console.log("files.length:",files.length);
        this.createImage(files[0]);
     },
     createImage(file){
-      var image = new Image();
+      // var image = new Image();
+      // vm.image = e.target.result;
+
+      // var image = new Image();
+
       var reader = new FileReader();
       var vm = this;
       reader.onload = (e) => {
