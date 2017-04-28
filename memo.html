@@ -758,7 +758,6 @@ position: absolute;
               <strong class="list-content-titie">{{item.title}}</strong>
               <time class="list-content-date">{{item.date}}</time>
               <img :src="item.img" class="list-img" >
-              <button class="rmv-btn" @click.stop="removeList(index)">파일 삭제</button>
             </li>
 
           </ul>
@@ -783,7 +782,8 @@ position: absolute;
 
 
             </div>
-
+            <button class="rmv-btn" @click.stop="removeList(index)">파일 삭제</button>
+            
           </div>
         </div>
 
