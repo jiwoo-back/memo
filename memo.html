@@ -321,6 +321,11 @@ border-radius: 2px;
 height: 31vh;
 resize: none;
 padding: 5px;
+/*white-space: normal;
+word-wrap: break-word;
+background-color: rgb(13, 252, 203);
+overflow: auto;*/
+
 }
 
 
@@ -769,7 +774,7 @@ position: absolute;
 
 
           <ul class="list-content-all" @click="listOpen = true"  v-show="viewlists">
-            <li v-for = "(item, index) in list" class="list-content"  @click="viewOpen(item)">
+            <li v-for = "(item, index) in history" class="list-content"  @click="viewOpen(item, index)">
               <strong class="list-content-titie">{{item.title}}</strong>
               <time class="list-content-date">{{item.date}}</time>
               <img :src="item.img" class="list-img" >
@@ -846,7 +851,7 @@ position: absolute;
 
           <div class="form--field">
           <label class="blind">내용</label>
-          <textarea class="form--element textarea" v-model="diaryData.diary" placeholder="일기를 작성해주세요" style="white-space: pre">
+          <textarea wrap="hard/soft" class="form--element textarea" v-model="diaryData.diary" placeholder="일기를 작성해주세요" style="white-space: pre">
           </textarea>
         </div>
 
@@ -916,6 +921,7 @@ var vue = new Vue({
     history: [],
     list:[],
     selecteditem:[],
+    selectedindex: null,
   },
   methods: {
     cancel: function() {
@@ -940,12 +946,14 @@ var vue = new Vue({
       this.viewwrite = true;
 
     },
-    viewOpen: function(item) {
+    viewOpen: function(item, index) {
       this.viewitem = true;
       this.viewlists = false;
       // this.refreash()
-      this.iteminput(item);
+      this.iteminput(item, index);
       console.log("llllll")
+      console.log("index:",this.selectedindex)
+
     },
 
     dragenter(e){
@@ -987,9 +995,9 @@ var vue = new Vue({
     },
     refreash(){
       if(JSON.parse(localStorage.getItem('history'))){
-        this.list = JSON.parse(localStorage.getItem('history'))
+        this.history = JSON.parse(localStorage.getItem('history'))
       } else {
-        this.list = ""
+        this.hitory = ""
       }
 
     },
@@ -997,12 +1005,14 @@ var vue = new Vue({
       localStorage.clear()
 
     },
-    iteminput(item){
+    iteminput(item, index){
       this.selecteditem = item
+      this.selectedindex = index
     },
     removeList(index){
       console.log("sss");
-      this.history.splice(index, 1)
+      console.log("index:",this.selectedindex)
+      this.history.splice(this.selectedindex, 1)
       localStorage.setItem('history', JSON.stringify(this.history))
       this.refreash()
       this.viewitem = false;
