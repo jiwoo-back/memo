@@ -393,9 +393,7 @@ padding: 5px;
   position: absolute;
   bottom: 30px;
   left: 30px;
-  font-size: 15px;
-  color: #fff;
-  filter: drop-shadow(8px 8px 10px yellow);
+  font-size: 15px
 }
 .list-content-li{
   overflow: hidden;
@@ -428,9 +426,6 @@ padding: 5px;
   white-space: nowrap;
   word-wrap: normal;
   overflow: hidden;
-  color: #fff;
-  font-size: 25px;
-  filter: drop-shadow(8px 8px 10px yellow);
 }
 /*------------------------------------------*/
 .view-list-wrap{
@@ -607,7 +602,7 @@ padding: 5px;
    margin-bottom: 10px;
    display: block;
    /*text-align: center;*/
-   font-size: 32px;
+   font-size: 22px;
 
    /*border-bottom: 1px solid gray;*/
 
@@ -783,7 +778,7 @@ position: absolute;
 
             </div>
             <button class="rmv-btn" @click.stop="removeList(index)">파일 삭제</button>
-            
+
           </div>
         </div>
 
@@ -989,8 +984,10 @@ var vue = new Vue({
       console.log("sss");
       this.history.splice(index, 1)
       localStorage.setItem('history', JSON.stringify(this.history))
-
       this.refreash()
+      this.viewitem = false;
+      this.viewlists = true;
+      this.viewwrite = false;
     },
 
 
