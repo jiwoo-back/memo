@@ -396,9 +396,11 @@ padding: 5px;
   font-size: 15px;
   color: #fff;
   filter: drop-shadow(8px 8px 10px yellow);
+
 }
 .list-content-li{
   overflow: hidden;
+
 }
 
 .list-content:hover{
@@ -428,8 +430,8 @@ padding: 5px;
   white-space: nowrap;
   word-wrap: normal;
   overflow: hidden;
+  font-size: 29px;
   color: #fff;
-  font-size: 25px;
   filter: drop-shadow(8px 8px 10px yellow);
 }
 /*------------------------------------------*/
@@ -594,6 +596,18 @@ padding: 5px;
    width: 100%;
  }
 
+ .days-rmv-btn{
+   background: silver;
+   padding: 5px 17px;
+   border-radius: 9px 9px 0 0;
+   bottom: 0;
+   right: 188px;
+   color: #fff;
+   display: inline-block;
+   position: absolute;
+   font-size: 12px;
+ }
+
  /*.days-letter::after{
    content: "";
    display: block;
@@ -607,7 +621,7 @@ padding: 5px;
    margin-bottom: 10px;
    display: block;
    /*text-align: center;*/
-   font-size: 22px;
+   font-size: 32px;
 
    /*border-bottom: 1px solid gray;*/
 
@@ -617,7 +631,9 @@ padding: 5px;
    /*background-color: rgb(251, 94, 78);*/
    position: relative;
    line-height: 20px;
-   text-align: justify
+   text-align: justify;
+   font-size: 18px;
+   color: gray;
  }
 
  .days-span::after{
@@ -626,7 +642,7 @@ padding: 5px;
    left: 0;
    display: block;
    /*background: rgb(22, 244, 238);*/
-   background: linear-gradient(to bottom, transparent 19px, black 19px);
+   background: linear-gradient(to bottom, transparent 19px, gray 19px);
    background-size: 1px 20px;
    /*z-index: 99999*/
    content: "";
@@ -666,11 +682,6 @@ right: 0;
 color: #fff;
 display: inline-block;
 position: absolute;
-
-
-  /*transform: translate(-50%);*/
-
-
 }
 .rmv-btn:hover{
   background: black;
@@ -758,7 +769,6 @@ position: absolute;
               <strong class="list-content-titie">{{item.title}}</strong>
               <time class="list-content-date">{{item.date}}</time>
               <img :src="item.img" class="list-img" >
-              <button class="rmv-btn" @click.stop="removeList(index)">파일 삭제</button>
             </li>
 
           </ul>
@@ -783,6 +793,7 @@ position: absolute;
 
 
             </div>
+            <button class="days-rmv-btn" @click.stop="removeList(index)">일기 삭제</button>
 
           </div>
         </div>
@@ -989,8 +1000,10 @@ var vue = new Vue({
       console.log("sss");
       this.history.splice(index, 1)
       localStorage.setItem('history', JSON.stringify(this.history))
-
       this.refreash()
+      this.viewitem = false;
+      this.viewlists = true;
+      this.viewwrite = false;
     },
 
 
